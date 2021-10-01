@@ -1,0 +1,49 @@
+body { min-height: 100vh; }
+
+.page-color {
+    background-color: #5E7787;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content:center ;
+}
+
+.title {
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    justify-content: center;
+}
+
+.container {
+    position: relative;
+    height: 300px;
+    width: 500px;
+    background-color: #8A979E;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
+
+}
+
+div.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+}
+
+#startStopButton {
+    color: white;
+    height: fit-content;
+    border: none;
+    background: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    cursor: pointer;
+    transition: font-size .2s ease-out;
+}
+
+#startStopButton:hover {
+    font-size: 24px;
+    transition: font-size .2s ease-in;
+}
+
