@@ -1,8 +1,14 @@
-function startStopButton() {
-    let name = document.getElementById("startStopButton");
-    if (name.innerHTML === "Get in the Zone") {
-        name.innerHTML = "Get out the Zone";
-    } else {
-        name.innerHTML = "Get in the Zone";
-    }
+document
+  .getElementById("startStopButton")
+  .addEventListener("click", toggleButtonName);
+
+function toggleButtonName() {
+  let zoneButtonName = document.getElementById("startStopButton");
+  if (zoneButtonName.innerHTML === "Enter the Zone") {
+    zoneButtonName.innerHTML = "Leave the Zone";
+  } else {
+    zoneButtonName.innerHTML = "Enter the Zone";
+  }
 }
+
+document.getElementById("countdown").addEventListener("click", inputTime);

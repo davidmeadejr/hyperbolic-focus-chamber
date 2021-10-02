@@ -17,16 +17,18 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" type="text/css" href="deep-work-zone.css" />
-
-    <script src="deep-work-zone.js"></script>
   </head>
   <body class="page-color">
     <h1 class="title">The Deep Work Zone</h1>
     <div class="container">
-      <div class="Timer" onclick="changeTime()"></div>
-      <button id="startStopButton" onclick="startStopButton()">
-        Get in the Zone
-      </button>
+      <!-- <div id="countdown">00:00</div> -->
+    <div class="timer-container">
+      <input id="mins" type="number" min="0" max="90" value="00" class="time" />
+      <p id="p1" class="semicolon">:</p>
+      <input id="secs" type="number" min="0" max="60" value="00" class="time" />
     </div>
+      <button id="startStopButton">Enter the Zone</button>
+    </div>
+    <script src="deep-work-zone.js"></script>
   </body>
 </html>
