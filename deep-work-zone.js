@@ -1,6 +1,15 @@
 const startStopButton = document.getElementById("startStopButton");
 startStopButton.addEventListener("click", toggleButtonName);
 
+function disableButton() {
+  let disableMinutes = document.getElementById("mins");
+  if (disableMinutes.value == "00") {
+    document.getElementById("startStopButton").disabled = true;
+  } else {
+    document.getElementById("startStopButton").disabled = false;
+  }
+}
+
 function decrementingMinutesNumber() {
   let newMinsFormat = document.getElementById("mins");
   if (
@@ -38,8 +47,8 @@ let startTimer = null;
 
 function timer() {
   if (minutes.value == 0 && seconds.value == 0) {
-    minutes.value = 0;
-    seconds.value = 0;
+    minutes.value = 0 + "0";
+    seconds.value = 0 + "0";
   } else if (seconds.value != 0) {
     seconds.value--;
     decrementingSecondsNumber();
@@ -47,8 +56,6 @@ function timer() {
     seconds.value = 59;
     minutes.value--;
     decrementingMinutesNumber();
-  } else if (minutes.value == 0 && seconds.value == 0) {
-    stopTimer();
   }
 
   return;
@@ -56,6 +63,7 @@ function timer() {
 
 function stopTimer() {
   clearInterval(startTimer);
+  document.getElementById("startStopButton").innerHTML = "Enter the Zone";
 }
 
 startStopButton.addEventListener("click", function () {
@@ -68,6 +76,7 @@ startStopButton.addEventListener("click", function () {
     }
     startTimerCountdown();
   } else {
+    zoneButtonName.innerHTML = "Enter the Zone";
     stopTimer();
     startTimer = setInterval(startTimer, 1000);
     minutes.value = "00";
