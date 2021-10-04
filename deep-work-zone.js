@@ -1,6 +1,5 @@
-document
-  .getElementById("startStopButton")
-  .addEventListener("click", toggleButtonName);
+const startStopButton = document.getElementById("startStopButton");
+startStopButton.addEventListener("click", toggleButtonName);
 
 function toggleButtonName() {
   let zoneButtonName = document.getElementById("startStopButton");
@@ -11,4 +10,53 @@ function toggleButtonName() {
   }
 }
 
-document.getElementById("countdown").addEventListener("click", inputTime);
+let minutes = document.getElementById("mins");
+let seconds = document.getElementById("secs");
+
+let startTimer = null;
+
+function timer() {
+  if (minutes.value == 0 && seconds.value == 0) {
+    minutes.value = 0;
+    seconds.value = 0;
+  } else if (seconds.value != 0) {
+    seconds.value--;
+  } else if (minutes.value != 0 && seconds.value == 0) {
+    seconds.value = 59;
+    minutes.value--;
+  }
+  return;
+}
+
+function stopTimer() {
+  clearInterval(startTimer);
+}
+
+startStopButton.addEventListener("click", function () {
+  let zoneButtonName = document.getElementById("startStopButton");
+  if (zoneButtonName.innerHTML === "Leave the Zone") {
+    function startTimerCountdown() {
+      startTimer = setInterval(function () {
+        timer();
+      }, 1000);
+    }
+    startTimerCountdown();
+  } else {
+    stopTimer();
+    startTimer = setInterval(startTimer, 1000);
+    minutes.value = "00";
+    seconds.value = "00";
+  }
+});
+
+// function format() {
+//  if (this.value.length < this.maxlength) {
+//     this.value = this.value.slice(0, this.maxlength);
+//  }
+// }
+
+// function formatInput() {
+//   if (this.value.length > this.maxlength) {
+//     this.value = this.value.slice(0, this.maxLength);
+//   }
+// }
