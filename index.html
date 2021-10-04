@@ -29,9 +29,10 @@
           max="90"
           value="00"
           class="time"
-          step="1"
           maxlength="2"
-          onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;"
+          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+          onchange="if (parseInt(this.value,10)<10)this.value='0'+ this.value;"
+          decrementingMinutesNumber()
         />
         <p id="p1" class="semicolon">:</p>
         <input
@@ -41,6 +42,8 @@
           max="60"
           value="00"
           class="time"
+          onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;"
+          decrementingSecondsNumber()
         />
       </div>
       <button id="startStopButton">Enter the Zone</button>

@@ -1,10 +1,25 @@
 const startStopButton = document.getElementById("startStopButton");
 startStopButton.addEventListener("click", toggleButtonName);
 
-function incrementFormat() {
-  let format = document.getElementById("mins");
-  format = "0" + minutes.value;
-  console.log(format);
+function decrementingMinutesNumber() {
+  let newMinsFormat = document.getElementById("mins");
+  if (
+    newMinsFormat.value < 10 ||
+    (newMinsFormat.value < 01 && newMinsFormat.value != 0)
+  ) {
+    newMinsFormat.value = "0" + newMinsFormat.value;
+  }
+
+  return;
+}
+
+function decrementingSecondsNumber() {
+  let newSecsFormat = document.getElementById("secs");
+  if (newSecsFormat.value < 10) {
+    newSecsFormat.value = "0" + newSecsFormat.value;
+  }
+
+  return;
 }
 
 function toggleButtonName() {
@@ -27,10 +42,15 @@ function timer() {
     seconds.value = 0;
   } else if (seconds.value != 0) {
     seconds.value--;
+    decrementingSecondsNumber();
   } else if (minutes.value != 0 && seconds.value == 0) {
     seconds.value = 59;
     minutes.value--;
+    decrementingMinutesNumber();
+  } else if (minutes.value == 0 && seconds.value == 0) {
+    stopTimer();
   }
+
   return;
 }
 
