@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>The Deep Work Zone</title>
+    <title>Hyperbolic Focus Chamber</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -17,9 +17,11 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" type="text/css" href="deep-work-zone.css" />
+    <link rel="icon" type="image/png" href="images/favicon.png"/>
   </head>
+  <video class="backgroundVideo" src="videos/HyperbolicFocusChamber.mp4" autoplay loop></video>
   <body class="page-color">
-    <h1 class="title">The Deep Work Zone</h1>
+    <h1 class="title">Hyperbolic Focus Chamber</h1>
     <div class="container">
       <div class="timer-container">
         <input
@@ -33,7 +35,7 @@
           oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
           onchange="if (parseInt(this.value,10)<10)this.value='0'+ this.value;"
           decrementingMinutesNumber()
-          onkeyup=disableButton()
+          onkeyup="disableButton()"
         />
         <p id="p1" class="semicolon">:</p>
         <input
@@ -47,7 +49,7 @@
           decrementingSecondsNumber()
         />
       </div>
-      <button id="startStopButton" disabled>Enter the Zone</button>
+      <button id="startStopButton" disabled>Begin 集中</button>
     </div>
     <script src="deep-work-zone.js"></script>
   </body>

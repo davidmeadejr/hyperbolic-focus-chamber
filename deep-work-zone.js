@@ -38,10 +38,10 @@ function decrementingSecondsNumber() {
 // Gets the element id for the variable startStopButton and assigns it to the variable zoneButtonName. If the variable shows the text "Enter the Zone" and then is clicked, "Leave the Zone shows" and vice versa.
 function toggleButtonName() {
   let zoneButtonName = document.getElementById("startStopButton");
-  if (zoneButtonName.innerHTML === "Enter the Zone") {
-    zoneButtonName.innerHTML = "Leave the Zone";
+  if (zoneButtonName.innerHTML === "Begin 集中") {
+    zoneButtonName.innerHTML = "End 残り";
   } else {
-    zoneButtonName.innerHTML = "Enter the Zone";
+    zoneButtonName.innerHTML = "Begin 集中";
   }
 }
 
@@ -57,7 +57,7 @@ function timer() {
   if (minutes.value == 0 && seconds.value == 0) {
     minutes.value = 0 + "0";
     seconds.value = 0 + "0";
-    document.getElementById("startStopButton").innerHTML = "Enter the Zone";
+    document.getElementById("startStopButton").innerHTML = "Begin 集中";
   } else if (seconds.value != 0) {
     seconds.value--;
     decrementingSecondsNumber();
@@ -73,13 +73,13 @@ function timer() {
 // Function that when called stops the timer and changes the button text back to "Enter the Zone"
 function stopTimer() {
   clearInterval(startTimer);
-  document.getElementById("startStopButton").innerHTML = "Enter the Zone";
+  document.getElementById("startStopButton").innerHTML = "Begin 集中";
 }
 
 // If startStopButton has been clicked and the text shows "Leave the Zone" the timer starts. If not the button text is "Enter the Zone", calls the stop timer function and the value inputs for minutes and seconds resets to "00:00."
 startStopButton.addEventListener("click", function () {
   let zoneButtonName = document.getElementById("startStopButton");
-  if (zoneButtonName.innerHTML === "Leave the Zone") {
+  if (zoneButtonName.innerHTML === "End 残り") {
     function startTimerCountdown() {
       startTimer = setInterval(function () {
         timer();
@@ -87,7 +87,7 @@ startStopButton.addEventListener("click", function () {
     }
     startTimerCountdown();
   } else {
-    zoneButtonName.innerHTML = "Enter the Zone";
+    zoneButtonName.innerHTML = "Begin 集中";
     stopTimer();
     startTimer = setInterval(startTimer, 1000);
     minutes.value = "00";

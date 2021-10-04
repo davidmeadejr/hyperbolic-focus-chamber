@@ -1,5 +1,6 @@
 body {
   min-height: 100vh;
+  /* z-index: 1000; */
 }
 
 .page-color {
@@ -10,20 +11,34 @@ body {
   justify-content: center;
 }
 
+.backgroundVideo {
+  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  filter:opacity(50%);
+}
+
 .title {
   color: white;
   font-family: "Montserrat", sans-serif;
   justify-content: center;
+  /* position: absolute; */
+  z-index: 1000;
+  /* margin-bottom: 400px; */
 }
 
 .container {
   position: relative;
   height: 300px;
   width: 500px;
-  background-color: #8a979e;
+  /* background-color: #8a979e; */
   border-radius: 8px;
   text-align: center;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
+  /* box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25); */
+  /* position: absolute; */
 }
 
 div.container {
@@ -50,7 +65,8 @@ div.container {
 }
 
 input#mins.time {
-  background-color: #8a979e;
+  background: rgba(0,0,0,0.0);
+  /* background-color: #8a979e; */
   border: none;
   font-size: 100px;
   outline: none;
@@ -58,16 +74,18 @@ input#mins.time {
   /* width: 100px;
   height: 100px; */
   text-align: center;
+  z-index: 1000;
 }
 
 input#secs.time {
-  background-color: #8a979e;
+  background: rgba(0,0,0,0.0);
   border: none;
   font-size: 100px;
   outline: none;
   color: white;
   -webkit-appearance: none;
   text-align: center;
+  z-index: 1000;
 }
 
 input#mins.time::-webkit-inner-spin-button {
