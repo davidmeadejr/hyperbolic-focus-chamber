@@ -1,6 +1,12 @@
 const startStopButton = document.getElementById("startStopButton");
 startStopButton.addEventListener("click", toggleButtonName);
 
+function incrementFormat() {
+  let format = document.getElementById("mins");
+  format = "0" + minutes.value;
+  console.log(format);
+}
+
 function toggleButtonName() {
   let zoneButtonName = document.getElementById("startStopButton");
   if (zoneButtonName.innerHTML === "Enter the Zone") {
@@ -48,15 +54,3 @@ startStopButton.addEventListener("click", function () {
     seconds.value = "00";
   }
 });
-
-// function format() {
-//  if (this.value.length < this.maxlength) {
-//     this.value = this.value.slice(0, this.maxlength);
-//  }
-// }
-
-// function formatInput() {
-//   if (this.value.length > this.maxlength) {
-//     this.value = this.value.slice(0, this.maxLength);
-//   }
-// }

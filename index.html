@@ -21,7 +21,6 @@
   <body class="page-color">
     <h1 class="title">The Deep Work Zone</h1>
     <div class="container">
-      <!-- <div id="countdown">00:00</div> -->
       <div class="timer-container">
         <input
           id="mins"
@@ -30,7 +29,9 @@
           max="90"
           value="00"
           class="time"
-          data-maxlength="2"
+          step="1"
+          maxlength="2"
+          onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;"
         />
         <p id="p1" class="semicolon">:</p>
         <input
