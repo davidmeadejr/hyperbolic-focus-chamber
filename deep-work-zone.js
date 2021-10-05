@@ -94,4 +94,3 @@ startStopButton.addEventListener("click", function () {
     seconds.value = "00";
   }
 });
-

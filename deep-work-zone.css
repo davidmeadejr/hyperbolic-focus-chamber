@@ -2,6 +2,7 @@ body {
   min-height: 100vh;
   /* z-index: 1000; */
   cursor: url("images/dbzcursor.png"), auto;
+  position: relative;
 }
 
 .page-color {
@@ -26,9 +27,10 @@ body {
   color: white;
   font-family: "Montserrat", sans-serif;
   justify-content: center;
-  /* position: absolute; */
+  position: absolute;
   z-index: 1000;
   /* margin-bottom: 400px; */
+  margin: 0 0 300px 0;
 }
 
 .container {
@@ -39,7 +41,7 @@ body {
   border-radius: 8px;
   text-align: center;
   /* box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25); */
-  /* position: absolute; */
+  position: absolute;
 }
 
 div.container {
@@ -134,5 +136,58 @@ input#secs.time::-webkit-inner-spin-button {
 }
 
 #mins {
-  cursor: text;
+  cursor: url("images/dbztextcursor.png"), auto;
+}
+
+#twitterHandle {
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  cursor: url("images/dbzcursor.png"), auto;
+  transition: font-size 0.2s ease-out;
+  font-size: 16px;
+  /* align-self: flex-end; */
+  z-index: 1000;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 16px;
+}
+
+#twitterHandle:hover,
+#deepWorkLink:hover {
+  font-size: 18px;
+  transition: font-size 0.2s ease-in;
+}
+
+#twitterHandle:hover span,
+#deepWorkLink:hover span {
+  display: none;
+}
+
+#twitterHandle:hover:before {
+  content: "作られた";
+  font-family: "Montserrat", sans-serif;
+}
+
+#deepWorkLink:hover:before {
+  content: "深い仕事 仮説";
+  font-family: "Montserrat", sans-serif;
+}
+
+#deepWorkLink {
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  cursor: url("images/dbzcursor.png"), auto;
+  transition: font-size 0.2s ease-out;
+  font-size: 16px;
+  /* align-self: flex-end; */
+  z-index: 1000;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 16px;
+}
+
+a {
+  text-decoration: none;
 }
