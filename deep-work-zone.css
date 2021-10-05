@@ -1,6 +1,7 @@
 body {
   min-height: 100vh;
   /* z-index: 1000; */
+  cursor: url("images/dbzcursor.png"), auto;
 }
 
 .page-color {
@@ -18,7 +19,7 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  filter:opacity(50%);
+  filter: opacity(50%);
 }
 
 .title {
@@ -65,7 +66,7 @@ div.container {
 }
 
 input#mins.time {
-  background: rgba(0,0,0,0.0);
+  background: rgba(0, 0, 0, 0);
   /* background-color: #8a979e; */
   border: none;
   font-size: 100px;
@@ -78,7 +79,7 @@ input#mins.time {
 }
 
 input#secs.time {
-  background: rgba(0,0,0,0.0);
+  background: rgba(0, 0, 0, 0);
   border: none;
   font-size: 100px;
   outline: none;
@@ -89,25 +90,25 @@ input#secs.time {
 }
 
 input#mins.time::-webkit-inner-spin-button {
-display: flex;
-height: 50px;
-align-self: center;
-color: white;
-cursor: pointer;
--webkit-appearance: none;
+  display: flex;
+  height: 50px;
+  align-self: center;
+  color: white;
+  cursor: pointer;
+  -webkit-appearance: none;
 }
 
 input#secs.time::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .semicolon {
-    font-size: 100px;
-    color: white;
-    display: flex;
-    align-self: center;
-    margin: 0
+  font-size: 100px;
+  color: white;
+  display: flex;
+  align-self: center;
+  margin: 0;
 }
 
 #startStopButton {
@@ -120,6 +121,7 @@ input#secs.time::-webkit-inner-spin-button {
   cursor: pointer;
   transition: font-size 0.2s ease-out;
   margin: 180px 0 0 0;
+  cursor: url("images/dbzcursor.png"), auto;
 }
 
 #startStopButton:hover {
@@ -127,10 +129,10 @@ input#secs.time::-webkit-inner-spin-button {
   transition: font-size 0.2s ease-in;
 }
 
-#secs{
-    pointer-events: none
+#secs {
+  pointer-events: none;
 }
 
-#mins{
-    cursor:text
+#mins {
+  cursor: text;
 }
