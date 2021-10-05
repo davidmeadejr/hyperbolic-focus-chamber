@@ -1,7 +1,7 @@
 body {
   min-height: 100vh;
   /* z-index: 1000; */
-  cursor: url("images/dbzcursor.png"), auto;
+  cursor: url("images/soundOn.png"), auto;
   position: relative;
 }
 

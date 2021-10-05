@@ -128,12 +128,23 @@ function stateHandler() {
 }
 **/
 
-let audio = documnet.getElementById("backgroundAudio");
+let initialAudioSonud = document.getElementById("backgroundAudio");
+initialAudioSonud.pause() = true;
 
-audio.mute = true;
+function toggleMute() {
+  let audio = document.getElementById("backgroundAudio");
+  if (audio.paused === true ) {
+    audio.play()
+    // document.body.style.cursor = url("images/soundOn.png")
+    document.body.style.cursor = 'url("images/soundOff1.png"), auto'
+  } else {
+    audio.pause()
+    // document.body.style.cursor = url("images/soundOff1.png")
+    document.body.style.cursor = 'url("images/soundOn.png"), auto';
+  }
 
-document.getElementById("mutePage").addEventListener("click", function (e) {
-  e = e || window.event;
-  audio.muted =!audio.muted;
-  e.preventDefault();
-}, false);
+  return audio
+
+}
+
+
