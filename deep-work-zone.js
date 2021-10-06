@@ -8,7 +8,8 @@ Where is the value of disabled minutes is equal to zero then the button is
 disabled. If not then the button can be clicked on. **/
 function disableButton() {
   let disableMinutes = document.getElementById("mins");
-  if (disableMinutes.value == "00") {
+  let disableSeconds = document.getElementById("secs");
+  if (disableMinutes.value == 00 && disableSeconds.value == 00) {
     document.getElementById("startStopButton").disabled = true;
   } else {
     document.getElementById("startStopButton").disabled = false;
@@ -22,7 +23,7 @@ function decrementingMinutesNumber() {
   let newMinsFormat = document.getElementById("mins");
   if (
     newMinsFormat.value < 10 ||
-    (newMinsFormat.value < 01 && newMinsFormat.value != 0)
+    (newMinsFormat.value < 01 && newMinsFormat.value != 00)
   ) {
     newMinsFormat.value = "0" + newMinsFormat.value;
   }
@@ -44,9 +45,10 @@ function decrementingSecondsNumber() {
 
 /** Gets the element id for the variable startStopButton and assigns it to the variable zoneButtonName. 
 If the variable shows the text "Enter the Zone" and then is clicked, "Leave the Zone shows" and vice versa. **/
-function toggleButtonName() { 
+function toggleButtonName() {
   let zoneButtonName = document.getElementById("startStopButton");
-  if (zoneButtonName.innerHTML === "Begin 集中") {
+  let disableMinutes = document.getElementById("mins");
+  if (zoneButtonName.innerHTML === "Begin 集中" && disableMinutes.value >= 01) {
     zoneButtonName.innerHTML = "End 残り";
   } else {
     zoneButtonName.innerHTML = "Begin 集中";
@@ -85,7 +87,6 @@ function timer() {
 /** Function that when called stops the timer and changes the button text back to "Enter the Zone" **/
 function stopTimer() {
   clearInterval(startTimer);
-  document.getElementById("startStopButton").innerHTML = "Begin 集中";
 }
 
 /** If startStopButton has been clicked and the text shows "Leave the Zone" the timer starts. 
@@ -104,47 +105,20 @@ startStopButton.addEventListener("click", function () {
     zoneButtonName.innerHTML = "Begin 集中";
     stopTimer();
     startTimer = setInterval(startTimer, 1000);
-    minutes.value = "00";
-    seconds.value = "00";
+    minutes.value = 0 + "0";
+    seconds.value = 0 + "0";
   }
 });
 
-/**
-let input = document.getElementById("mins")
-let button = document.getElementById("startStopButton")
-
-button.disabled = true 
-
-input.addEventListener("change", stateHandler)
-
-function stateHandler() {
-  if (document.getElementById("mins").value === "00") {
-    button.disabled = true
-    document.getElementById("startStopButton").innerHTML = "End 残り";
-  } else {
-    button.disabled = false
-    document.getElementById("startStopButton").innerHTML = "Begin 集中";
-  }
-}
-**/
-
-let initialAudioSonud = document.getElementById("backgroundAudio");
-initialAudioSonud.pause() = true;
-
 function toggleMute() {
   let audio = document.getElementById("backgroundAudio");
-  if (audio.paused === true ) {
-    audio.play()
-    // document.body.style.cursor = url("images/soundOn.png")
-    document.body.style.cursor = 'url("images/soundOff1.png"), auto'
+  if (audio.paused === true) {
+    audio.play();
+    document.body.style.cursor = 'url("images/soundOff1.png"), auto';
   } else {
-    audio.pause()
-    // document.body.style.cursor = url("images/soundOff1.png")
+    audio.pause();
     document.body.style.cursor = 'url("images/soundOn.png"), auto';
   }
 
-  return audio
-
+  return audio;
 }
-
-

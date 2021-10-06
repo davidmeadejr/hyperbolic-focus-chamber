@@ -111,6 +111,7 @@ input#secs.time::-webkit-inner-spin-button {
   display: flex;
   align-self: center;
   margin: 0;
+  cursor: url("images/dbztextcursor.png"), auto;
 }
 
 #startStopButton {

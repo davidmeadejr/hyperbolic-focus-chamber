@@ -7,6 +7,9 @@
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="Cache-control" content="no-cache" />
+
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap"
       rel="stylesheet"
@@ -44,7 +47,7 @@
         width="40px"
       />
     </h1>
-    <div class="container">
+    <div class="container" onclick="!toggleMute()">
       <div class="timer-container">
         <input
           id="mins"
@@ -71,13 +74,14 @@
           decrementingSecondsNumber()
         />
       </div>
-      <button id="startStopButton">Begin 集中</button>
+      <button id="startStopButton" onclick="disableButton()">Begin 集中</button>
     </div>
     <a
       href="https://www.youtube.com/watch?v=b6xQpoVgN68"
       target="_blank"
       rel="noopener noreferrer"
       id="deepWorkLink"
+      onclick="!toggleMute()"
       ><span>Deep Work Hypothesis</span></a
     >
     <a
@@ -85,6 +89,7 @@
       target="_blank"
       rel="noopener noreferrer"
       id="twitterHandle"
+      onclick="!toggleMute()"
       ><span>@davidmeadejr</span></a
     >
     <script src="deep-work-zone.js"></script>
