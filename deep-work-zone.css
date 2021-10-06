@@ -114,6 +114,10 @@ input#secs.time::-webkit-inner-spin-button {
   cursor: url("images/dbztextcursor.png"), auto;
 }
 
+#startStopButton:disabled {
+color: #d3d3d3;
+}
+
 #startStopButton {
   color: white;
   height: fit-content;

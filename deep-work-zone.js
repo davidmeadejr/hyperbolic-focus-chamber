@@ -52,6 +52,7 @@ function toggleButtonName() {
     zoneButtonName.innerHTML = "End 残り";
   } else {
     zoneButtonName.innerHTML = "Begin 集中";
+    document.getElementById("startStopButton").style.color = "#d3d3d3"
   }
 }
 
