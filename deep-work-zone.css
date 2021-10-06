@@ -115,7 +115,7 @@ input#secs.time::-webkit-inner-spin-button {
 }
 
 #startStopButton:disabled {
-color: #d3d3d3;
+  color: #d3d3d3;
 }
 
 #startStopButton {
@@ -195,5 +195,4 @@ color: #d3d3d3;
 
 a {
   text-decoration: none;
-
 }

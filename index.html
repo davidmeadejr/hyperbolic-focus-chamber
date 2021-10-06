@@ -22,6 +22,8 @@
     <link rel="stylesheet" type="text/css" href="deep-work-zone.css" />
     <link rel="icon" type="image/png" href="images/dbzlogofavicon.png" />
     <!-- <audio id="saiyanSound" autoplay src="audio/saiyanaurasound.mp3"></audio> -->
+
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
   </head>
   <audio id="backgroundAudio" autoplay loop>
     <source
@@ -74,7 +76,9 @@
           decrementingSecondsNumber()
         />
       </div>
-      <button disabled id="startStopButton" onclick="disableButton()">Begin 集中</button>
+      <button disabled id="startStopButton" onclick="disableButton()">
+        Begin 集中
+      </button>
     </div>
     <a
       href="https://www.youtube.com/watch?v=b6xQpoVgN68"
