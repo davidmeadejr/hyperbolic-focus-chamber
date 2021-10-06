@@ -23,7 +23,7 @@
     <link rel="icon" type="image/png" href="images/dbzlogofavicon.png" />
     <!-- <audio id="saiyanSound" autoplay src="audio/saiyanaurasound.mp3"></audio> -->
 
-    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+    <!-- <script src="https://sdk.scdn.co/spotify-player.js"></script> -->
   </head>
   <audio id="backgroundAudio" autoplay loop>
     <source
@@ -61,7 +61,6 @@
           maxlength="2"
           oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
           onchange="if (parseInt(this.value,10)<10)this.value='0'+ this.value;"
-          decrementingMinutesNumber()
           onkeyup="disableButton()"
         />
         <p id="p1" class="semicolon">:</p>
@@ -73,7 +72,6 @@
           value="00"
           class="time"
           onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;"
-          decrementingSecondsNumber()
         />
       </div>
       <button disabled id="startStopButton" onclick="disableButton()">

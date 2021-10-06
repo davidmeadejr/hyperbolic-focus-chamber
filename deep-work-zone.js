@@ -11,8 +11,10 @@ function disableButton() {
   let disableSeconds = document.getElementById("secs");
   if (disableMinutes.value == 00 && disableSeconds.value == 00) {
     document.getElementById("startStopButton").disabled = true;
+    document.getElementById("startStopButton").style.color = "#d3d3d3";
   } else {
     document.getElementById("startStopButton").disabled = false;
+    document.getElementById("startStopButton").style.color = "#fff";
   }
 }
 
@@ -50,6 +52,7 @@ function toggleButtonName() {
   let disableMinutes = document.getElementById("mins");
   if (zoneButtonName.innerHTML === "Begin 集中" && disableMinutes.value >= 01) {
     zoneButtonName.innerHTML = "End 残り";
+    document.getElementById("startStopButton").style.color = "#fff";
   } else {
     zoneButtonName.innerHTML = "Begin 集中";
     document.getElementById("startStopButton").style.color = "#d3d3d3";
@@ -73,6 +76,7 @@ function timer() {
     minutes.value = 0 + "0";
     seconds.value = 0 + "0";
     document.getElementById("startStopButton").innerHTML = "Begin 集中";
+    document.getElementById("startStopButton").style.color = "#d3d3d3";
   } else if (seconds.value != 0) {
     seconds.value--;
     decrementingSecondsNumber();
@@ -95,17 +99,19 @@ If not the button text is "Enter the Zone", calls the stop timer function
 and the value inputs for minutes and seconds resets to "00:00." **/
 startStopButton.addEventListener("click", function () {
   let zoneButtonName = document.getElementById("startStopButton");
-  if (zoneButtonName.innerHTML === "End 残り") {
+  if (minutes.value != 0 && seconds.value < 1) {
     function startTimerCountdown() {
       startTimer = setInterval(function () {
         timer();
       }, 1000);
     }
     startTimerCountdown();
+    zoneButtonName.innerHTML = "End 残り";
+    document.getElementById("startStopButton").style.color = "#fff";
   } else {
-    zoneButtonName.innerHTML = "Begin 集中";
     stopTimer();
     startTimer = setInterval(startTimer, 1000);
+    zoneButtonName.innerHTML = "Begin 集中";
     minutes.value = 0 + "0";
     seconds.value = 0 + "0";
   }
