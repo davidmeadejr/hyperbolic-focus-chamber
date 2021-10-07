@@ -1,6 +1,6 @@
 /** The id of the element for the start stop button is assigned a variable 
 where a it listens for a click event to run toggle the button names. **/
-const startStopButton = document.getElementById("startStopButton");
+let startStopButton = document.getElementById("startStopButton");
 startStopButton.addEventListener("click", toggleButtonName);
 
 /** Assigns the element id for the minutes values to a variable disable minutes. 
@@ -72,26 +72,32 @@ let startTimer = null;
  Else if the minutes input value is not equal to zero and the seconds value is equal to zero. Then the seconds input value is 59 
  and the minutes input value decreases by one, and the decrementingmMinutesNumber() is called. **/
 function timer() {
+  let superSaiyanAudio = document.getElementById("superSaiyan");
+  let startStopButton = document.getElementById("startStopButton");
   if (minutes.value == 0 && seconds.value == 0) {
     minutes.value = 0 + "0";
     seconds.value = 0 + "0";
     document.getElementById("startStopButton").innerHTML = "Begin 集中";
     document.getElementById("startStopButton").style.color = "#d3d3d3";
+    superSaiyanAudio.play();
+    superSaiyanAudio.currentTime = 0
+    stopTimer()
   } else if (seconds.value != 0) {
     seconds.value--;
     decrementingSecondsNumber();
-  } else if (minutes.value != 0 && seconds.value == 0) {
+  } else if (minutes.value != 0 && seconds.value == 0 && startStopButton.innerHTML == "End 残り" ) {
     seconds.value = 59;
     minutes.value--;
     decrementingMinutesNumber();
+    superSaiyanAudio.pause();
+    minutes.disabled = true;
   }
-
   return;
 }
 
 /** Function that when called stops the timer and changes the button text back to "Enter the Zone" **/
 function stopTimer() {
-  clearInterval(startTimer);
+  clearTimeout(startTimer);
 }
 
 /** If startStopButton has been clicked and the text shows "Leave the Zone" the timer starts. 
@@ -110,7 +116,6 @@ startStopButton.addEventListener("click", function () {
     document.getElementById("startStopButton").style.color = "#fff";
   } else {
     stopTimer();
-    startTimer = setInterval(startTimer, 1000);
     zoneButtonName.innerHTML = "Begin 集中";
     minutes.value = 0 + "0";
     seconds.value = 0 + "0";
