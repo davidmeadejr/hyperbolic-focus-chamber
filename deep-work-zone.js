@@ -80,17 +80,21 @@ function timer() {
     document.getElementById("startStopButton").innerHTML = "Begin 集中";
     document.getElementById("startStopButton").style.color = "#d3d3d3";
     superSaiyanAudio.play();
-    superSaiyanAudio.currentTime = 0
-    stopTimer()
+    superSaiyanAudio.currentTime = 0;
+    stopTimer();
   } else if (seconds.value != 0) {
     seconds.value--;
     decrementingSecondsNumber();
-  } else if (minutes.value != 0 && seconds.value == 0 && startStopButton.innerHTML == "End 残り" ) {
+  } else if (
+    minutes.value != 0 &&
+    seconds.value == 0 &&
+    startStopButton.innerHTML == "End 残り"
+  ) {
     seconds.value = 59;
     minutes.value--;
     decrementingMinutesNumber();
     superSaiyanAudio.pause();
-    minutes.disabled = true;
+    // minutes.disabled = true;
   }
   return;
 }
@@ -105,6 +109,7 @@ If not the button text is "Enter the Zone", calls the stop timer function
 and the value inputs for minutes and seconds resets to "00:00." **/
 startStopButton.addEventListener("click", function () {
   let zoneButtonName = document.getElementById("startStopButton");
+  let minutes = document.getElementById("mins");
   if (minutes.value != 0 && seconds.value < 1) {
     function startTimerCountdown() {
       startTimer = setInterval(function () {
@@ -114,11 +119,13 @@ startStopButton.addEventListener("click", function () {
     startTimerCountdown();
     zoneButtonName.innerHTML = "End 残り";
     document.getElementById("startStopButton").style.color = "#fff";
+    minutes.disabled = true;
   } else {
     stopTimer();
     zoneButtonName.innerHTML = "Begin 集中";
     minutes.value = 0 + "0";
     seconds.value = 0 + "0";
+    minutes.disabled = false;
   }
 });
 
