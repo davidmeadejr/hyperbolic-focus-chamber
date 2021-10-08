@@ -23,11 +23,14 @@ If the value of the minutes input is greater than  10 or less than 01 and not
 equal to zero. An additional zero is added to values from 01 - 09. **/
 function decrementingMinutesNumber() {
   let newMinsFormat = document.getElementById("mins");
+  let newSecondsFormat = document.getElementById("secs");
   if (
     newMinsFormat.value < 10 ||
     (newMinsFormat.value < 01 && newMinsFormat.value != 00)
   ) {
     newMinsFormat.value = "0" + newMinsFormat.value;
+  } else if (newMinsFormat.value < 10 && newSecondsFormat.value == "00") {
+    newMinsFormat.value = newMinsFormat.value - "0";
   }
 
   return;
@@ -74,14 +77,17 @@ let startTimer = null;
 function timer() {
   let superSaiyanAudio = document.getElementById("superSaiyan");
   let startStopButton = document.getElementById("startStopButton");
+  let hideAnimeVideo = document.getElementById("backgroundVideo");
   if (minutes.value == 0 && seconds.value == 0) {
-    minutes.value = 0 + "0";
+    minutes.value = 0;
     seconds.value = 0 + "0";
     document.getElementById("startStopButton").innerHTML = "Begin 集中";
     document.getElementById("startStopButton").style.color = "#d3d3d3";
     superSaiyanAudio.play();
     superSaiyanAudio.currentTime = 0;
     stopTimer();
+    hideAnimeVideo.hidden = false;
+    minutes.disabled = false;
   } else if (seconds.value != 0) {
     seconds.value--;
     decrementingSecondsNumber();
@@ -94,7 +100,6 @@ function timer() {
     minutes.value--;
     decrementingMinutesNumber();
     superSaiyanAudio.pause();
-    // minutes.disabled = true;
   }
   return;
 }
@@ -109,6 +114,7 @@ If not the button text is "Enter the Zone", calls the stop timer function
 and the value inputs for minutes and seconds resets to "00:00." **/
 startStopButton.addEventListener("click", function () {
   let zoneButtonName = document.getElementById("startStopButton");
+  let hideAnimeVideo = document.getElementById("backgroundVideo");
   let minutes = document.getElementById("mins");
   if (minutes.value != 0 && seconds.value < 1) {
     function startTimerCountdown() {
@@ -120,12 +126,14 @@ startStopButton.addEventListener("click", function () {
     zoneButtonName.innerHTML = "End 残り";
     document.getElementById("startStopButton").style.color = "#fff";
     minutes.disabled = true;
+    hideAnimeVideo.hidden = true;
   } else {
     stopTimer();
     zoneButtonName.innerHTML = "Begin 集中";
-    minutes.value = 0 + "0";
-    seconds.value = 0 + "0";
+    minutes.value = "00";
+    seconds.value = "00";
     minutes.disabled = false;
+    hideAnimeVideo.hidden = false;
   }
 });
 
