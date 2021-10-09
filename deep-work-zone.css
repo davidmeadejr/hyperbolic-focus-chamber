@@ -1,7 +1,7 @@
 body {
   min-height: 100vh;
   /* z-index: 1000; */
-  cursor: url("images/soundOn.png"), auto;
+  cursor: url("images/dbzcursor.png"), auto;
   position: relative;
 }
 
@@ -156,6 +156,7 @@ input#secs.time::-webkit-inner-spin-button {
   bottom: 0;
   right: 0;
   padding: 16px;
+  cursor: url("images/dbzcursor.png"), auto;
 }
 
 #twitterHandle:hover,

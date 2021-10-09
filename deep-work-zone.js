@@ -88,6 +88,8 @@ function timer() {
     stopTimer();
     hideAnimeVideo.hidden = false;
     minutes.disabled = false;
+    document.getElementById("playlist").currentTime = 0;
+    document.getElementById("playlist").pause();
   } else if (seconds.value != 0) {
     seconds.value--;
     decrementingSecondsNumber();
@@ -127,6 +129,7 @@ startStopButton.addEventListener("click", function () {
     document.getElementById("startStopButton").style.color = "#fff";
     minutes.disabled = true;
     hideAnimeVideo.hidden = true;
+    document.getElementById("playlist").play();
   } else {
     stopTimer();
     zoneButtonName.innerHTML = "Begin 集中";
@@ -134,18 +137,26 @@ startStopButton.addEventListener("click", function () {
     seconds.value = "00";
     minutes.disabled = false;
     hideAnimeVideo.hidden = false;
+    document.getElementById("playlist").currentTime = 0;
+    document.getElementById("playlist").pause();
   }
 });
 
-function toggleMute() {
-  let audio = document.getElementById("backgroundAudio");
-  if (audio.paused === true) {
-    audio.play();
-    document.body.style.cursor = 'url("images/soundOff1.png"), auto';
-  } else {
-    audio.pause();
-    document.body.style.cursor = 'url("images/soundOn.png"), auto';
-  }
+// function playlistShuffle() {
+//   let playlistArray =  [
+//     { : "songs/Follow my Lead Edit - New Picasso (Instrumental).mp3"},
+//     { URL: "songs/Herfavroses - New Picasso (Instrumental).mp3"},
+//     { URL: "songs/How u Wanna (handle it) Instrumental - Cay Caleb II.mp3"}
+//   ];
 
-  return audio;
-}
+//   console.log(playlistArray);
+
+// }
+
+// let playlistArray = document.getElementById("playlist", [
+//   { source: "songs/Follow my Lead Edit - New Picasso (Instrumental).mp3"},
+//   { source: "songs/Herfavroses - New Picasso (Instrumental).mp3"},
+//   { source: "songs/How u Wanna (handle it) Instrumental - Cay Caleb II.mp3"}
+// ]);
+
+// console.log(playlistArray);
