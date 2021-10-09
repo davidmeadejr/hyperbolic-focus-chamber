@@ -79,7 +79,7 @@ function timer() {
   let startStopButton = document.getElementById("startStopButton");
   let hideAnimeVideo = document.getElementById("backgroundVideo");
   if (minutes.value == 0 && seconds.value == 0) {
-    minutes.value = 0;
+    minutes.value = "00";
     seconds.value = 0 + "0";
     document.getElementById("startStopButton").innerHTML = "Begin 集中";
     document.getElementById("startStopButton").style.color = "#d3d3d3";
