@@ -29,11 +29,13 @@ function timer() {
     setDefaultButtonState();
     playBackgroundVideo();
   } else if (seconds.value != 0) {
-    decrementSecsValue();
+    decrementSecsValue()
+    formatSecsValue();
   } else if (minutes.value != 0 && seconds.value == 0) {
     pauseSaiyanAlarm();
     decrementMinsValue();
     hideBackgroundVideo();
+    formatMinsValue();
   }
   return;
 }
@@ -115,6 +117,22 @@ startStopButton.addEventListener("click", function () {
     startTimerCountdown();
   }
 });
+
+// Ensures the minutes input value remains in the "00" format when in single digits.
+function formatMinsValue() {
+  if (minutes.value < 10 || (minutes.value < 1 && minutes.value != 0)) {
+    minutes.value = "0" + minutes.value;
+  } else if (minutes.value < 10 && seconds.value == 0) {
+    minutes.value = minutes.value - "0";
+  }
+}
+
+// Ensures the seconds input value remains in the "00" format when in single digits.
+function formatSecsValue() {
+  if (seconds.value < 10) {
+    seconds.value = "0" + seconds.value;
+  }
+}
 
 // Toggle button text name if timer was stopped early.
 startStopButton.addEventListener("click", function toggleBText() {
