@@ -61,7 +61,6 @@
           maxlength="2"
           oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
           onchange="if (parseInt(this.value,10)<10)this.value='0'+ this.value;"
-          onkeyup="disableButton()"
         />
         <p id="p1" class="semicolon">:</p>
         <input
@@ -74,7 +73,7 @@
           onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;"
         />
       </div>
-      <button disabled id="startStopButton" onclick="disableButton()">
+      <button disabled id="startStopButton">
         Begin 集中
       </button>
     </div>

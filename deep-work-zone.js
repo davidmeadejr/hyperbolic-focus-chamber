@@ -1,123 +1,111 @@
-/** The id of the element for the start stop button is assigned a variable 
-where a it listens for a click event to run toggle the button names. **/
-let startStopButton = document.getElementById("startStopButton");
-startStopButton.addEventListener("click", toggleButtonName);
-
-/** Assigns the element id for the minutes values to a variable disable minutes. 
-Where is the value of disabled minutes is equal to zero then the button is 
-disabled. If not then the button can be clicked on. **/
-function disableButton() {
-  let disableMinutes = document.getElementById("mins");
-  let disableSeconds = document.getElementById("secs");
-  if (disableMinutes.value == 00 && disableSeconds.value == 00) {
-    document.getElementById("startStopButton").disabled = true;
-    document.getElementById("startStopButton").style.color = "#d3d3d3";
-  } else {
-    document.getElementById("startStopButton").disabled = false;
-    document.getElementById("startStopButton").style.color = "#fff";
-  }
-}
-
-/** Gets the element for the minutes id and assigns it to the variable newMinsFormat. 
-If the value of the minutes input is greater than  10 or less than 01 and not 
-equal to zero. An additional zero is added to values from 01 - 09. **/
-function decrementingMinutesNumber() {
-  let newMinsFormat = document.getElementById("mins");
-  let newSecondsFormat = document.getElementById("secs");
-  if (
-    newMinsFormat.value < 10 ||
-    (newMinsFormat.value < 01 && newMinsFormat.value != 00)
-  ) {
-    newMinsFormat.value = "0" + newMinsFormat.value;
-  } else if (newMinsFormat.value < 10 && newSecondsFormat.value == "00") {
-    newMinsFormat.value = newMinsFormat.value - "0";
-  }
-
-  return;
-}
-
-/** Gets the element for the seconds if and assigns it to the variaboe newSecsFormat. 
-If the value of the seconds input is greater than greater than 10, an additional 
-zero is added to the values from 01 - 09. **/
-function decrementingSecondsNumber() {
-  let newSecsFormat = document.getElementById("secs");
-  if (newSecsFormat.value < 10) {
-    newSecsFormat.value = "0" + newSecsFormat.value;
-  }
-
-  return;
-}
-
-/** Gets the element id for the variable startStopButton and assigns it to the variable zoneButtonName. 
-If the variable shows the text "Enter the Zone" and then is clicked, "Leave the Zone shows" and vice versa. **/
-function toggleButtonName() {
-  let zoneButtonName = document.getElementById("startStopButton");
-  let disableMinutes = document.getElementById("mins");
-  if (zoneButtonName.innerHTML === "Begin 集中" && disableMinutes.value >= 01) {
-    zoneButtonName.innerHTML = "End 残り";
-    document.getElementById("startStopButton").style.color = "#fff";
-  } else {
-    zoneButtonName.innerHTML = "Begin 集中";
-    document.getElementById("startStopButton").style.color = "#d3d3d3";
-  }
-}
-
-/** Assigns the element id for the mins and secs input to variables minutes and seconds for use in functions. **/
+// Global variables
 let minutes = document.getElementById("mins");
 let seconds = document.getElementById("secs");
+let button = document.getElementById("startStopButton");
 
-/** Assigns null to the variable startTimer on initialisation.**/
+// Shows background video when timer has been stopped.
+function playBackgroundVideo() {
+  let hideBackgroundVideo = document.getElementById("backgroundVideo");
+  hideBackgroundVideo.hidden = false;
+}
+
+// Hides background video when timer is running.
+function hideBackgroundVideo() {
+  let hideBackgroundVideo = document.getElementById("backgroundVideo");
+  hideBackgroundVideo.hidden = true;
+}
+
+// Assigns null to the variable startTimer on initialisation.
 let startTimer = null;
 
-/** if the value of the minutes and seconds input is equal to zero then the input format becomes 00
- once the timer finishes and the button text changes back to "Enter the Zone." 
- Else if the seconds value is not equal to zero then the seonds decrements by one and, the decrementingSecondsNumber() is called. 
- Else if the minutes input value is not equal to zero and the seconds value is equal to zero. Then the seconds input value is 59 
- and the minutes input value decreases by one, and the decrementingmMinutesNumber() is called. **/
+// Default timer settings.
 function timer() {
-  let superSaiyanAudio = document.getElementById("superSaiyan");
-  let startStopButton = document.getElementById("startStopButton");
-  let hideAnimeVideo = document.getElementById("backgroundVideo");
+  if (minutes.value == 0 && seconds.value == 0) {
+    stopTimer();
+    resetValues();
+    resetButtontext();
+    playSaiyanAlarm();
+    enableMinsInput();
+    setDefaultButtonState();
+    playBackgroundVideo();
+  } else if (seconds.value != 0) {
+    decrementSecsValue();
+  } else if (minutes.value != 0 && seconds.value == 0) {
+    pauseSaiyanAlarm();
+    decrementMinsValue();
+    hideBackgroundVideo();
+  }
+  return;
+}
+
+// Resets value fields to a "00" format if timer count down finished uniterrupted
+function resetValues() {
   if (minutes.value == 0 && seconds.value == 0) {
     minutes.value = "00";
     seconds.value = 0 + "0";
-    document.getElementById("startStopButton").innerHTML = "Begin 集中";
-    document.getElementById("startStopButton").style.color = "#d3d3d3";
-    superSaiyanAudio.play();
-    superSaiyanAudio.currentTime = 0;
-    stopTimer();
-    hideAnimeVideo.hidden = false;
-    minutes.disabled = false;
-    document.getElementById("playlist").currentTime = 0;
-    document.getElementById("playlist").pause();
-  } else if (seconds.value != 0) {
-    seconds.value--;
-    decrementingSecondsNumber();
-  } else if (
-    minutes.value != 0 &&
-    seconds.value == 0 &&
-    startStopButton.innerHTML == "End 残り"
-  ) {
-    seconds.value = 59;
-    minutes.value--;
-    decrementingMinutesNumber();
-    superSaiyanAudio.pause();
   }
-  return;
 }
 
-/** Function that when called stops the timer and changes the button text back to "Enter the Zone" **/
+// Sets button text back to default if timer count down finished uninterrupted.
+function resetButtontext() {
+  if (minutes.value == 0 && seconds.value == 0) {
+    button.innerHTML = "Begin 集中";
+  }
+}
+
+// Decrements the seconds value while the timer is running.
+function decrementSecsValue() {
+  if (seconds.value != 0) {
+    seconds.value--;
+  }
+}
+
+// Decrements the seconds value while the timer is running.
+function decrementMinsValue() {
+  if (minutes.value != 0 && seconds.value == 0) {
+    seconds.value = 59;
+    minutes.value--;
+  }
+}
+
+// Plays saiyan alert once timer has stopped.
+function playSaiyanAlarm() {
+  let superSaiyanAudio = document.getElementById("superSaiyan");
+  if (minutes.value == 0 && seconds.value == 0) {
+    superSaiyanAudio.play();
+    superSaiyanAudio.currentTime = 0;
+  }
+}
+
+// Pauses the saiyan alert once timer restarts.
+function pauseSaiyanAlarm() {
+  let superSaiyanAudio = document.getElementById("superSaiyan");
+  if (minutes.value != 0 && seconds.value == 0) {
+    superSaiyanAudio.pause();
+  }
+}
+
+// Removes the disable input field functionality once the timer has stopped.
+function enableMinsInput() {
+  if (minutes.value == 0 && seconds.value == 0) {
+    minutes.disabled = false;
+  }
+}
+
+// Resets button to the default state once the timer ends.
+function setDefaultButtonState() {
+  if (minutes.value == 0 && seconds.value == 0) {
+    button.disabled = true;
+  }
+}
+
+// Stop timer functionality.
 function stopTimer() {
   clearTimeout(startTimer);
 }
 
-/** If startStopButton has been clicked and the text shows "Leave the Zone" the timer starts. 
-If not the button text is "Enter the Zone", calls the stop timer function 
-and the value inputs for minutes and seconds resets to "00:00." **/
+// Start timer functionality.
 startStopButton.addEventListener("click", function () {
-  let zoneButtonName = document.getElementById("startStopButton");
-  let hideAnimeVideo = document.getElementById("backgroundVideo");
-  let minutes = document.getElementById("mins");
   if (minutes.value != 0 && seconds.value < 1) {
     function startTimerCountdown() {
       startTimer = setInterval(function () {
@@ -125,38 +113,45 @@ startStopButton.addEventListener("click", function () {
       }, 1000);
     }
     startTimerCountdown();
-    zoneButtonName.innerHTML = "End 残り";
-    document.getElementById("startStopButton").style.color = "#fff";
-    minutes.disabled = true;
-    hideAnimeVideo.hidden = true;
-    document.getElementById("playlist").play();
-  } else {
-    stopTimer();
-    zoneButtonName.innerHTML = "Begin 集中";
-    minutes.value = "00";
-    seconds.value = "00";
-    minutes.disabled = false;
-    hideAnimeVideo.hidden = false;
-    document.getElementById("playlist").currentTime = 0;
-    document.getElementById("playlist").pause();
   }
 });
 
-// function playlistShuffle() {
-//   let playlistArray =  [
-//     { : "songs/Follow my Lead Edit - New Picasso (Instrumental).mp3"},
-//     { URL: "songs/Herfavroses - New Picasso (Instrumental).mp3"},
-//     { URL: "songs/How u Wanna (handle it) Instrumental - Cay Caleb II.mp3"}
-//   ];
+// Toggle button text name if timer was stopped early.
+startStopButton.addEventListener("click", function toggleBText() {
+  if (minutes.value != 0 && seconds.value < 1) {
+    button.innerHTML = "End 残り";
+  } else {
+    button.innerHTML = "Begin 集中";
+  }
+});
 
-//   console.log(playlistArray);
+// Toggle disable/enable button functionality if timer was stopped early.
+startStopButton.addEventListener("click", function disableButton() {
+  if (minutes.value != 0 && seconds.value < 1) {
+    minutes.disabled = true;
+  } else {
+    minutes.disabled = false;
+  }
+});
 
-// }
+// Resets value fields to a "00" format if timer was stopped early.
+startStopButton.addEventListener("click", function resetTimerValues() {
+  if (minutes.value >= 0 && seconds.value > 1) {
+    minutes.value = "00";
+    seconds.value = "00";
+  }
+});
 
-// let playlistArray = document.getElementById("playlist", [
-//   { source: "songs/Follow my Lead Edit - New Picasso (Instrumental).mp3"},
-//   { source: "songs/Herfavroses - New Picasso (Instrumental).mp3"},
-//   { source: "songs/How u Wanna (handle it) Instrumental - Cay Caleb II.mp3"}
-// ]);
+// Stop timer when button is clicked after timer has been running initially.
+startStopButton.addEventListener("click", function stopTimer() {
+  if (minutes.value != 0 && seconds.value > 1) {
+    stopTimer();
+  }
+});
 
-// console.log(playlistArray);
+// Sets enable button state once the minutes input field has a value.
+minutes.addEventListener("keyup", function setEnableState() {
+  if (minutes.value != "00" && seconds.value == "00") {
+    button.disabled = false;
+  }
+});
