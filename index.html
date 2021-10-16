@@ -59,8 +59,6 @@
           value="00"
           class="time"
           maxlength="2"
-          oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-          onchange="if (parseInt(this.value,10)<10)this.value='0'+ this.value;"
         />
         <p id="p1" class="semicolon">:</p>
         <input
@@ -70,7 +68,6 @@
           max="60"
           value="00"
           class="time"
-          onchange="if(parseInt(this.value,10)<10)this.value='0'+this.value;"
         />
       </div>
       <button disabled id="startStopButton">
