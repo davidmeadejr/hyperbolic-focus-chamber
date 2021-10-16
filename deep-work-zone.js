@@ -3,7 +3,7 @@ let minutes = document.getElementById("mins");
 let seconds = document.getElementById("secs");
 let button = document.getElementById("startStopButton");
 
-/* Shows background video when the timer is not running. */ 
+/* Shows background video when the timer is not running. */
 function playBackgroundVideo() {
   let hideBackgroundVideo = document.getElementById("backgroundVideo");
   hideBackgroundVideo.hidden = false;
@@ -49,6 +49,7 @@ function startTimerCountdown() {
     timer();
     callDecrementSecsFunc();
     callDecrementMinsFunc();
+    playSaiyanAlarm();
   }, 1000);
   pauseSaiyanAlarm();
   hideBackgroundVideo();
@@ -105,10 +106,10 @@ function timer() {
     stopTimer();
     resetValues();
     resetButtonText();
-    // playSaiyanAlarm();
     enableMinsInput();
     setDefaultButtonState();
     playBackgroundVideo();
+    disableSaiyanAlert();
   }
 }
 
@@ -133,12 +134,11 @@ function formatSecsValue() {
   }
 }
 
-/* Plays saiyan alert once timer has stopped. */
+/* Plays saiyan alert once timer has stopped uninterrupted. */
 function playSaiyanAlarm() {
   let superSaiyanAudio = document.getElementById("superSaiyan");
   if (minutes.value == 0 && seconds.value == 0) {
     superSaiyanAudio.play();
-    superSaiyanAudio.currentTime = 0;
   }
 }
 
@@ -189,7 +189,6 @@ function pauseSaiyanAlarm() {
 /* Stop timer functionality. */
 function stopTimer() {
   clearTimeout(startTimer);
-  // playBackgroundVideo();
 }
 
 /* Resets minutes and seconds value fields to a "00" format if timer was stopped early. */
@@ -211,5 +210,5 @@ button.addEventListener("click", function disableButton() {
 button.addEventListener("click", function disableButton() {
   if (minutes.value != 0 && seconds.value < 1) {
     minutes.disabled = false;
-  } 
+  }
 });
